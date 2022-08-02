@@ -1,7 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
 export const Update = () => {
+
+    const [attributes, setAttributes] = useState([]);
 
     const navigate = useNavigate();
     const location = useLocation();
@@ -10,8 +12,12 @@ export const Update = () => {
         <div className="riotemployee">
             <h1>Enter values to update for {location.state.table}</h1>
             <div>
-                <p>attribute1</p>
-                <form><input type = "text"/></form>
+                {location.state.attributes.map(e =>
+                <div>
+                    <p>{e}</p>
+                    <form><input type="text" /></form>
+                </div>
+                )}
             </div>
             <div>
                 <button>submit</button>
