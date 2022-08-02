@@ -10,6 +10,15 @@ export const RiotEmployee = () => {
             <h1>Welcome, Riot employee.</h1>
             <button onClick = {() => navigate("/riotemployee/choosetable")}>Update</button>
             <button onClick={() => navigate("/")}>back</button>
+            <button onClick={() => navigate("/")}>Delete</button>
+            <button onClick={() => navigate("/")}>Insert</button>
+            <button onClick={() => navigate("/")}>Select(View)</button>
+            <button onClick={() => navigate("/")}>Division</button>
+            <button onClick={() => navigate("/")}>Projection</button>
+            <button onClick={() => navigate("/")}>Join</button>
+            <button onClick={() => navigate("/")}>Aggregation with Group By</button>
+            <button onClick={() => navigate("/")}>Aggregation with having</button>
+            <button onClick={() => navigate("/")}>Nested Aggregation with Group By</button>
         </div>
     );
 };
