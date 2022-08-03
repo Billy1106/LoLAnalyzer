@@ -30,12 +30,16 @@ export const ChooseTable = () => {
             }
 
             const uniqueAttributeNames = [...attributeNames]; 
-
-            navigate("/riotemployee/choosetable/update", {state:
+            navigate("/riotemployee/choosetable/insert", {state:
+                {table: tableNames[0],
+                attributes: uniqueAttributeNames}});
+            /*
+            navigate("/riotemployee/choosetable/insert", {state:
                 {table: (isNaN((parseFloat(tableNames[0].charAt(tableNames[0].length - 1)))) ?
                     tableNames[0] : 
                     tableNames[0].substring(0, tableNames[0].length - 1)), // if last char is a number (in case we have multiple tables), remove it
                 attributes: uniqueAttributeNames}});
+                */
         } catch (err) {
             console.log(err.message);
         }
@@ -44,7 +48,7 @@ export const ChooseTable = () => {
     return (
         <div className="choosetable">
             <h1>Please choose an option.</h1>
-            <button onClick = {() => getAttributes("Champion1", "Champion3", "Champion5","Champion6")}>Champions</button>
+            <button onClick = {() => getAttributes("Champion1")}>Champions</button>
             <button onClick = {() => getAttributes("Items")}>Items</button>
             <button onClick = {() => getAttributes("Abilities_has")}>Abilities</button>
             <button onClick={() => navigate(-1)}>back</button>
