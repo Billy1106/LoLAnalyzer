@@ -1,36 +1,37 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "../assets/styles/select.scss"
 
 export const Select = () => {
-    const [select, setSelect] = useState("name,function");
-    const [from, setFrom] = useState("items");
-    const [where, setWhere] = useState("true");
+    // const [select, setSelect] = useState("name,function");
+    // const [from, setFrom] = useState("items");
+    // const [where, setWhere] = useState("true");
     const [data, setData] = useState([]);
-    const onSubmitForm = async (e) => {
-        e.preventDefault();
+    const [tuples, setTuples] = useState([]);
+    const [tables, setTables] = useState([]);
+    const [table, setTable] = useState([]);
+    const [columns, setColumns] = useState([]);
+    const fetchData = async (select, from, where) => {
         try {
-            const body = from + "/" + select + "/" + where;
-            const response = await fetch("http://localhost:5321/game/get/" + body);
+            const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`);
             const jsonData = await response.json();
-            setData(jsonData)
+            return jsonData
         } catch (error) {
             console.log("error")
             console.log(error.message)
         }
     }
-    const showResult = () => {
-        console.log(data)
-        if (data.length === 0) {
-            return <p>nothing</p>
+
+    const showTables = () => {
+        if (tables.length === 0) {
+            return <p>Loading</p>
         } else {
             return <tbody>
-
-                {Object.keys(data[0]).map(e =>
+                {Object.keys(tables[0]).map(e =>
                     <tr className='attribute'>
-                        <th>{e}</th>
-                        {data.map(tuple =>
-                            <td className='box'>{JSON.stringify(tuple[e])}
-                            </td>
+
+                        {tables.map(tuple =>
+                            <button className='box' onClick={() => getTable(tuple[e])}>{JSON.stringify(tuple[e])}
+                            </button>
                         )}
                     </tr>
 
@@ -39,26 +40,89 @@ export const Select = () => {
             </tbody>;
         }
     }
+    const showTable = () => {
+    
+        if (columns.length === 0) {
+            return <p>Loading</p>
+        } else {
+            return <tbody>
+                <p>{table}</p>
+                {Object.keys(columns[0]).map(e =>
+                    <tr className='attribute'>
+                        {columns.map(tuple =>
+                            <button className='box' onClick={() => getTuples(tuple[e])}>{JSON.stringify(tuple[e])}
+                            </button>
+                        )}
+                    </tr>
+
+                )}
+            </tbody>;
+        }
+    }
+
+    const showTuples = () => {
+  
+        if (tuples.length === 0) {
+            return <p>Loading</p>
+        } else {
+            return <tbody>
+                <p>data</p>
+                {Object.keys(tuples[0]).map(e =>
+                    <tr className='attribute'>
+                        {tuples.map(tuple =>
+                            <tr className='box' >{JSON.stringify(tuple[e])}
+                            </tr>
+                        )}
+                    </tr>
+
+                )}
+            </tbody>;
+        }
+    }
+
+    const getTable = async (tableName) => {
+        setTable(tableName);
+    }
+    const getTuples = async(attributeName) =>{
+        console.log("tuples")
+        console.log(attributeName)
+        setTuples((await fetchData(attributeName, table, `true`)))
+    }
+
+    useEffect(() => {
+        const initializeData = async () => {
+            setTables(await fetchData("table_name", "INFORMATION_SCHEMA.TABLES", "TABLE_SCHEMA='public'"));
+            setTable("items")
+            setColumns(await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='items'`))
+            setTuples(await fetchData("name", "items", `true`))
+        }
+        initializeData().catch(console.error)
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const col = await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='${table}'`);
+            setColumns(col)
+            setTuples([])
+            console.log("now column")
+            console.log(columns)
+        })();
+    }, [table]);
+    
+
     return (
         <div className='select'>
-            <form onSubmit={onSubmitForm}>
-                <div className='box'>
-                    <p>Select</p>
-                    <input type={"text"} value={select} onChange={e => { setSelect(e.target.value) }} />
-                </div>
-                <div className='box'>
-                    <p>From</p>
-                    <input type={"text"} value={from} onChange={e => { setFrom(e.target.value) }} />
-                </div>
-                <div className='box'>
-                    <p>Where</p>
-                    <input type={"text"} value={where} onChange={e => { setWhere(e.target.value) }} />
-                </div>
-                <button>submit</button>
-            </form>
             <table>
-                {showResult()}
+                {showTables()}
+            </table>
+            <table>
+                {showTable()}
+            </table>
+            
+            <table>
+                {showTuples()}
             </table>
         </div>
     )
 }
+
