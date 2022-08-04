@@ -23,6 +23,7 @@ function App() {
           <Route path = "/normaluser" element = {<NormalUser/>}/>
         </Routes>
       </BrowserRouter>
+
     </div>
   );
 }
