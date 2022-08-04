@@ -26,8 +26,8 @@ export const ChooseTable = () => {
             <div className="choosetable">
                 <h1>Please choose an option{location.state.action}</h1>
                 <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "champion"}})}>Champions</button>
-                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "item"}})}>Items</button>
-                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "ability"}})}>Abilities</button>
+                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "items"}})}>Items</button>
+                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "abilities_has"}})}>Abilities</button>
                 <button onClick={() => navigate(-1)}>back</button>
             </div>
         );
