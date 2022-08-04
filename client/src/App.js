@@ -9,6 +9,7 @@ import {Update} from "./component/Update"
 import {Select} from "./component/Select"
 import {Delete} from "./component/Delete"
 import {Insert} from "./component/Insert"
+import {Error} from "./component/Error"
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path = "/riotemployee/choosetable/insert" element = {<Insert/>}/>
           <Route path = "/riotemployee/choosetable/update" element = {<Update/>}/>
           <Route path = "/normaluser" element = {<NormalUser/>}/>
+          <Route path = "/error" element = {<Error/>}/>
         </Routes>
       </BrowserRouter>
     </div>

@@ -36,7 +36,13 @@ export const Insert = () => {
             }
             attributes = attributes + forms[index- 1] + "\'";
             const response = await fetch(`http://localhost:5321/game/insert/${location.state.table}/${attributes}`, {method: "PUT"});
-            navigate("/riotemployee");
+            const jsonData = await response.json();
+            if (jsonData.startsWith("error:")) {
+                navigate("/error", {state:{errorMessage : jsonData}});
+            }
+            else {
+                navigate("/riotemployee");
+            }
         } catch(err) {
             console.error(err.message);
         }
