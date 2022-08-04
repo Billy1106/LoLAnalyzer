@@ -10,7 +10,7 @@ export const RiotEmployee = () => {
             <h1>Welcome, Riot employee.</h1>
             <button onClick = {() => navigate("/riotemployee/choosetable",{state:{action: "(to update)."}})}>Update</button>
             <button onClick={() => navigate("/")}>back</button>
-            <button onClick={() => navigate("/")}>Delete</button>
+            <button onClick={() => navigate("/riotemployee/choosetable",{state:{action: "(to delete)."}})}>Delete</button>
             <button onClick={() => navigate("/")}>Insert</button>
             <button onClick={() => navigate("/")}>Select(View)</button>
             <button onClick={() => navigate("/")}>Division</button>
