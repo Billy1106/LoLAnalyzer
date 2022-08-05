@@ -2,14 +2,14 @@ import React, { useState, useEffect } from 'react'
 import "../assets/styles/select.scss"
 
 export const Select = () => {
-    // const [select, setSelect] = useState("name,function");
-    // const [from, setFrom] = useState("items");
-    // const [where, setWhere] = useState("true");
-    const [data, setData] = useState([]);
-    const [tuples, setTuples] = useState([]);
+
     const [tables, setTables] = useState([]);
     const [table, setTable] = useState([]);
-    const [columns, setColumns] = useState([]);
+    const [property, setProperty] = useState([])
+    const [tuples,setTuples] = useState([])
+    const [fetching,setFetching] = useState(false)
+
+
     const fetchData = async (select, from, where) => {
         try {
             const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`);
@@ -21,106 +21,154 @@ export const Select = () => {
         }
     }
 
-    const showTables = () => {
-        if (tables.length === 0) {
-            return <p>Loading</p>
-        } else {
-            return <tbody>
-                {Object.keys(tables[0]).map(e =>
-                    <tr className='attribute'>
-
-                        {tables.map(tuple =>
-                            <button className='box' onClick={() => getTable(tuple[e])}>{JSON.stringify(tuple[e])}
-                            </button>
-                        )}
-                    </tr>
-
-                )}
-
-            </tbody>;
-        }
-    }
-    const showTable = () => {
+    const getResult = async (e) => {
+        setFetching(true)
+        e.preventDefault();
+        try {
+            var select = ""
+            var where = "";
+            Object.keys(property["obj"]).forEach(function (key) {
+              
+                if (property["obj"][key]["checked"]) {
+                    select = key + "," + select
+                    if (property["obj"][key]["condition"] != "")
+                        where = key + property["obj"][key]["equality"] + property["obj"][key]["condition"] + " AND " + where
+                }
+            });
+            const from = table;
+            select = select.slice(0, -1);
+            console.log(property)
+            where += "true"
+            console.log(`http://localhost:5321/game/get/${from}/${select}/${where}`)
+            const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`);
+            const jsonData = await response.json();
+            // console.log("obj")
+            // console.log(Object.values(jsonData))
     
-        if (columns.length === 0) {
-            return <p>Loading</p>
-        } else {
-            return <tbody>
-                <p>{table}</p>
-                {Object.keys(columns[0]).map(e =>
-                    <tr className='attribute'>
-                        {columns.map(tuple =>
-                            <button className='box' onClick={() => getTuples(tuple[e])}>{JSON.stringify(tuple[e])}
-                            </button>
-                        )}
-                    </tr>
+            setTuples(jsonData)
+         
 
-                )}
-            </tbody>;
+        } catch (error) {
+            console.log("error")
+            console.log(error.message)
+            setTuples([])
+            
+        } finally{
+   
+            setFetching(false)
+            
         }
     }
 
-    const showTuples = () => {
-  
-        if (tuples.length === 0) {
-            return <p>Loading</p>
-        } else {
-            return <tbody>
-                <p>data</p>
-                {Object.keys(tuples[0]).map(e =>
-                    <tr className='attribute'>
-                        {tuples.map(tuple =>
-                            <tr className='box' >{JSON.stringify(tuple[e])}
-                            </tr>
-                        )}
-                    </tr>
+    const handleOnCheckbox = (e) => {
 
-                )}
-            </tbody>;
-        }
+        setProperty({ obj: { ...property["obj"], [e.target.value]: { ...property["obj"][e.target.value], checked: !property["obj"][e.target.value]["checked"] } } })
+    }
+    const handleOnTextbox = (value, index) => {
+        const keys = Object.keys(property["obj"]);
+       
+        setProperty({ obj: { ...property["obj"], [index]: { ...property["obj"][index], condition: value } } })
+    }
+    const handleEquality = (value,index)=>{
+        setProperty({ obj: { ...property["obj"], [index]: { ...property["obj"][index], equality: value } } })
     }
 
     const getTable = async (tableName) => {
         setTable(tableName);
     }
-    const getTuples = async(attributeName) =>{
-        console.log("tuples")
-        console.log(attributeName)
-        setTuples((await fetchData(attributeName, table, `true`)))
-    }
-
     useEffect(() => {
         const initializeData = async () => {
             setTables(await fetchData("table_name", "INFORMATION_SCHEMA.TABLES", "TABLE_SCHEMA='public'"));
             setTable("items")
-            setColumns(await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='items'`))
-            setTuples(await fetchData("name", "items", `true`))
+            const col = await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='items'`);
+
+            var obj = {}
+            for (let i = 0; i < col.length; i++) {
+                obj[col[i].column_name] = { checked: false, condition: "",equality:"=" };
+            }
+            setProperty({ obj })
+            // console.log("new obj")
+            // console.log({ obj })
+
         }
         initializeData().catch(console.error)
     }, []);
-
     useEffect(() => {
         (async () => {
             const col = await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='${table}'`);
-            setColumns(col)
+            var obj = {}
+            for (let i = 0; i < col.length; i++) {
+                obj[col[i].column_name] = { checked: false, condition: "",equality:"=" };
+            }
+            // console.log("new obj")
+            // console.log({obj})
+            setProperty({ obj })
             setTuples([])
-            console.log("now column")
-            console.log(columns)
-        })();
-    }, [table]);
-    
 
+        })();
+
+    }, [table]);
     return (
         <div className='select'>
             <table>
-                {showTables()}
+                {(tables.length === 0) ? <p>loading</p> : Object.keys(tables[0]).map(e =>
+                    <tr className='attribute'>
+                        {tables.map(tuple =>
+                            <button className='box' onClick={() => getTable(tuple[e])}>{JSON.stringify(tuple[e]).replace(/\"/g, "")}
+                            </button>
+                        )}
+                    </tr>
+                )}
             </table>
             <table>
-                {showTable()}
+                {(property["obj"] === undefined) ? <p>loading</p> :
+                    <div>
+                        <p>{table}</p>
+                
+                        <form onSubmit={getResult}>
+                            {
+                                Object.keys(property["obj"]).map(attribute => <div>{attribute}
+                                  <select name="equality" onChange={(e)=>handleEquality(e.target.value,attribute)} value={property["obj"][attribute]["equality"]} disabled={!property["obj"][attribute]["checked"]} >
+                                        <option value="="> {"="} </option>
+                                        <option value="<="> {"<="} </option>
+                                        <option value="<"> {"<"} </option>
+                                        <option value=">="> {"=>"} </option>
+                                        <option value=">"> {">"} </option>
+                                    </select>
+                                    <input type="textbox" disabled={!property["obj"][attribute]["checked"]}
+                                        onChange={(e) => handleOnTextbox(e.target.value, attribute)}
+                                        value={property["obj"][attribute]["condition"]} />
+                                    <input type="checkbox" value={attribute} onChange={(e) => handleOnCheckbox(e, attribute)}
+                                        checked={property["obj"][attribute]["checked"]} />
+                                </div>)
+                            }
+                            <button type='submit'>get</button>
+                        </form>
+                    </div>
+                }
             </table>
-            
             <table>
-                {showTuples()}
+           
+                {!fetching?tuples.length===0?<p>no data</p>:
+                    <div>
+                    <tr>
+                        {
+                            Object.keys(tuples[0]).map(index=>{
+                                return <th>{index}</th>;
+                            })
+                        }
+                    </tr>
+                    {
+                        Object.keys(tuples).map(index=>{
+                            return <tr>{Object.keys(tuples[index]).map(e=>{
+                                return <td>{tuples[index][e]}</td>
+                            })}</tr>
+                        })
+                    }
+                    </div>:<p>Getting...</p>}
+
+
+
             </table>
         </div>
     )

@@ -6,7 +6,7 @@ import { Delete } from './component/Delete';
 function App() {
   return (
     <div>
-      <Delete/>
+      <Select/>
     </div>
   );
 }
