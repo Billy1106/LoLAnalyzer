@@ -7,11 +7,8 @@ export const Delete = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const [AllData, setAllData] = useState(null);
-    
-    const handleOnChange = () => {
-      
-    };
-    const effect = useEffect(() => {
+    const [refreshAfterDelete, setRefreshAfterDelete] = useState(0);
+    const effectGet = useEffect(() => {
 
         let url = `http://localhost:5321/game/get/${location.state.table}/*/true`;
 
@@ -28,8 +25,10 @@ export const Delete = () => {
             }
           )
         }
-        ,[]
+        ,[refreshAfterDelete]//dependency for rerunning this page
     );
+
+    
 
   
       
@@ -56,7 +55,15 @@ return(
         <td>{entry.num_skins}</td>
         <td>{entry.rp_cost}</td>
         <td>{entry.be_cost}</td> 
-        <button onClick={() => {}}>delete</button>
+        <button onClick={() => {fetch(`http://localhost:5321/game/delete/champion6/name/${entry.name}`, {method: "DELETE"})
+                .finally( ()=>{
+                  setRefreshAfterDelete(
+                    (pre)=>{
+                      return(pre+1)}
+                  ) 
+                }
+            )}
+                        }>delete</button>
       </tr>
         })}
 </table>}
@@ -73,7 +80,15 @@ return(
         <td>{entry.name}</td>
         <td>{entry.function}</td>
         <td>{entry.cost}</td> 
-        <button onClick={() => {}}>delete</button>
+        <button onClick={() => {fetch(`http://localhost:5321/game/delete/${location.state.table}/name/${entry.name}`, {method: "DELETE"})
+                .finally( ()=>{
+                  setRefreshAfterDelete(
+                    (pre)=>{
+                      return(pre+1)}
+                  ) 
+                }
+            )}
+                        }>delete</button>
       </tr>
         })}
 </table>}
@@ -93,7 +108,15 @@ return(
         <td>{entry.champion_name}</td>
         <td>{entry.effect}</td>
         <td>{entry.cooldown}</td> 
-        <button onClick={() => {}}>delete</button>
+        <button onClick={() => {fetch(`http://localhost:5321/game/delete/${location.state.table}/ability_name/${entry.ability_name}`, {method: "DELETE"})
+                .finally( ()=>{
+                  setRefreshAfterDelete(
+                    (pre)=>{
+                      return(pre+1)}
+                  ) 
+                }
+            )}
+                        }>delete</button>
       </tr>
         })}
 </table>}
