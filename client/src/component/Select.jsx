@@ -3,11 +3,11 @@ import "../assets/styles/select.scss"
 
 export const Select = () => {
 
-    const [tables, setTables] = useState([]);
-    const [table, setTable] = useState([]);
-    const [property, setProperty] = useState([])
-    const [tuples,setTuples] = useState([])
-    const [fetching,setFetching] = useState(false)
+    const [tables, setTables] = useState([]);//list of tables
+    const [table, setTable] = useState([]);//selected tables
+    const [property, setProperty] = useState([])//each attribute's property (checked? condtions?)
+    const [tuples,setTuples] = useState([])//result of select
+    const [fetching,setFetching] = useState(false)//is currently fetching or not
 
 
     const fetchData = async (select, from, where) => {
@@ -39,22 +39,24 @@ export const Select = () => {
             select = select.slice(0, -1);
             console.log(property)
             where += "true"
+            
             console.log(`http://localhost:5321/game/get/${from}/${select}/${where}`)
-            const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`);
+            const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`)
+            
             const jsonData = await response.json();
-            // console.log("obj")
+            console.log("obj")
             // console.log(Object.values(jsonData))
     
             setTuples(jsonData)
          
 
         } catch (error) {
-            console.log("error")
+            console.log("error!")
             console.log(error.message)
             setTuples([])
             
+            
         } finally{
-   
             setFetching(false)
             
         }
@@ -73,6 +75,7 @@ export const Select = () => {
         setProperty({ obj: { ...property["obj"], [index]: { ...property["obj"][index], equality: value } } })
     }
 
+
     const getTable = async (tableName) => {
         setTable(tableName);
     }
@@ -81,7 +84,6 @@ export const Select = () => {
             setTables(await fetchData("table_name", "INFORMATION_SCHEMA.TABLES", "TABLE_SCHEMA='public'"));
             setTable("items")
             const col = await fetchData("column_name", "INFORMATION_SCHEMA.COLUMNS", `TABLE_SCHEMA='public' AND table_name='items'`);
-
             var obj = {}
             for (let i = 0; i < col.length; i++) {
                 obj[col[i].column_name] = { checked: false, condition: "",equality:"=" };
@@ -109,21 +111,22 @@ export const Select = () => {
 
     }, [table]);
     return (
-        <div className='select'>
-            <table>
+        <div style={{textAlign:"center",fontSize:"20px"}} className='select'>
+            <h1>Select A Table From Below</h1>
+            <table style={{marginLeft:"20%",marginRight:"20%"}}>
                 {(tables.length === 0) ? <p>loading</p> : Object.keys(tables[0]).map(e =>
-                    <tr className='attribute'>
+                    <tr>
                         {tables.map(tuple =>
-                            <button className='box' onClick={() => getTable(tuple[e])}>{JSON.stringify(tuple[e]).replace(/\"/g, "")}
+                            <button style={{marginLeft:"5px",marginRight:"5px",marginTop:"5px",fontSize:"20px"}} className='box' onClick={() => getTable(tuple[e])}>{JSON.stringify(tuple[e]).replace(/\"/g, "")}
                             </button>
                         )}
                     </tr>
                 )}
             </table>
-            <table>
+            <table style={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {(property["obj"] === undefined) ? <p>loading</p> :
                     <div>
-                        <p>{table}</p>
+                        <p>Selected:{table}</p>
                 
                         <form onSubmit={getResult}>
                             {
@@ -147,7 +150,7 @@ export const Select = () => {
                     </div>
                 }
             </table>
-            <table>
+            <table style={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}>
            
                 {!fetching?tuples.length===0?<p>no data</p>:
                     <div>
@@ -160,8 +163,8 @@ export const Select = () => {
                     </tr>
                     {
                         Object.keys(tuples).map(index=>{
-                            return <tr>{Object.keys(tuples[index]).map(e=>{
-                                return <td>{tuples[index][e]}</td>
+                            return <tr >{Object.keys(tuples[index]).map(e=>{
+                                return <td style={{border: "1px solid black"}}>{tuples[index][e]}</td>
                             })}</tr>
                         })
                     }
