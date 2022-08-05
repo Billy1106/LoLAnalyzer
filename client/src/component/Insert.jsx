@@ -10,7 +10,7 @@ export const Insert = () => {
     const location = useLocation();
 
     const initForms = (e, tempIndex) => {
-        forms.push("lol" + tempIndex);
+        forms.push("");
         index++;
         return (<div>
             <p>{e}</p>

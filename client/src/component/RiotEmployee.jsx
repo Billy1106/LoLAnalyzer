@@ -8,7 +8,7 @@ export const RiotEmployee = () => {
     return (
         <div className="riotemployee">
             <h1>Welcome, Riot employee.</h1>
-            <button onClick = {() => navigate("/riotemployee/choosetable")}>Insert</button>
+            <button onClick = {() => navigate("/riotemployee/choosetable")}>Update</button>
             <button onClick = {() => navigate("/riotemployee/select")}>select</button> // todo
             <button onClick={() => navigate("/")}>back</button>
         </div>

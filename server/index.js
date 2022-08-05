@@ -87,6 +87,7 @@ app.put("/game/update/:table/:value/:condition", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+        res.json("error:" + error.message);
     }
 })
 
