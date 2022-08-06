@@ -34,7 +34,7 @@ export const ChooseTable = () => {
             }
 
             const uniqueAttributeNames = [...attributeNames]; 
-            navigate("/riotemployee/choosetable/update", {state:
+            navigate("/riotemployee/choosetable/insert", {state:
                 {table: tableNames[0],
                 attributes: uniqueAttributeNames,
                 primaryKey: key}});
