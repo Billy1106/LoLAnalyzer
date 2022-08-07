@@ -29,7 +29,6 @@ export const Insert = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
-        var jsonData = {};
         try {
             var attributes = "\'";
             for (var i =0; i < index - 1; i++) {
