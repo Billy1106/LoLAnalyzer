@@ -37,6 +37,49 @@ app.get("/game/get/:table/:data/:condition", async(req,res)=>{
     }
 })
 
+//group by table
+app.get("/game/groupby/:table/:data/:condition/:groupby", async(req,res)=>{
+    try {
+        const table = req.params.table;
+        const data = req.params.data;
+        const condition = req.params.condition;
+        const group = req.params.groupby;
+        //    http://localhost:5321/game/groupby/pro_players_belong/server/true/server
+        // is same as 
+        //    select server,id from pro_players_belong group by server,id
+
+        console.log(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group}`)
+        const allGames = await pool.query(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group}`);
+        res.json(allGames.rows);
+    } catch (error) {
+        console.log("error")
+        console.log(error.message);
+        res.status(500).send(error.message)
+    }
+})
+//group by having
+app.get("/game/groupby/:table/:data/:condition/:groupby/:having", async(req,res)=>{
+    try {
+        const table = req.params.table;
+        const data = req.params.data;
+        const condition = req.params.condition;
+        const group = req.params.groupby;
+        const having = req.params.having;
+        //    http://localhost:5321/game/groupby/pro_players_belong/server,id/true/server,id/server='NA'
+        // is same as 
+        //    select server,id from pro_players_belong group by server,id having server='NA';
+
+        console.log(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group}`)
+        const allGames = await pool.query(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group} HAVING ${having}`);
+        res.json(allGames.rows);
+    } catch (error) {
+        console.log("error")
+        console.log(error.message);
+        res.status(500).send(error.message)
+    }
+})
+
+
 //Delete tuple
 app.delete("/game/delete/:table/:attribute/:value", async(req,res)=>{
     try {
