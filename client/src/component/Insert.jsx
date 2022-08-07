@@ -45,8 +45,7 @@ export const Insert = () => {
                     navigate("/riotemployee");
                 }
         } catch(err) {
-            console.log(JSON.stringify(jsonData));
-            navigate("/error", {state:{errorMessage : JSON.stringify(jsonData)}});
+            console.error(err.message);
         }
     };
 
