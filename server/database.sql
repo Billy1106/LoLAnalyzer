@@ -438,5 +438,3 @@ INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Louis Vuitton', 'V
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Secretlab', 'Evil Geniuses');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('OPPO', 'Cloud9');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Red Bull', 'DetonatioN FocusMe');
-
-

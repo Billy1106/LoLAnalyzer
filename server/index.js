@@ -15,7 +15,6 @@ app.post("/game", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
-        res.status(500).send(error.message)
     }
 })
 
@@ -35,6 +34,7 @@ app.get("/game/get/:table/:data/:condition", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+        // res.json("error: " + error.message)
         res.status(500).send(error.message)
     }
 })
@@ -54,6 +54,7 @@ app.delete("/game/delete/:table/:attribute/:value", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+        //res.json("error: " + error.message)
         res.status(500).send(error.message)
     }
 })
@@ -71,7 +72,8 @@ app.put("/game/insert/:table/:value", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
-        res.status(500).send(error.message)
+        res.json("error: " + error.message)
+        //res.status(500).send(error.message)
     }
 })
 
@@ -90,7 +92,8 @@ app.put("/game/update/:table/:value/:condition", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
-        res.status(500).send(error.message)
+        res.json("error: " + error.message)
+        //res.status(500).send(error.message)
     }
 })
 

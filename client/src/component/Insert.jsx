@@ -29,6 +29,7 @@ export const Insert = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        var jsonData = {};
         try {
             var attributes = "\'";
             for (var i =0; i < index - 1; i++) {
@@ -36,12 +37,16 @@ export const Insert = () => {
             }
             attributes = attributes + forms[index- 1] + "\'";
             const response = await fetch(`http://localhost:5321/game/insert/${location.state.table}/${attributes}`, {method: "PUT"});
-            const jsonData = await response;
+            const jsonData = await response.json();
+                if (jsonData.startsWith("error:")) {
+                    navigate("/error", {state:{errorMessage : jsonData}});
+                }
+                else {
+                    navigate("/riotemployee");
+                }
         } catch(err) {
-            console.log("asdfasdfasdfasdfasdfa");
-            console.log(err.message);
-            console.log("asdfasdfasdfasdfasdfasdfasdfasdf");
-            navigate("/error", {state:{errorMessage : err.message}});
+            console.log(JSON.stringify(jsonData));
+            navigate("/error", {state:{errorMessage : JSON.stringify(jsonData)}});
         }
     };
 
