@@ -89,8 +89,6 @@ export const Select = () => {
                 obj[col[i].column_name] = { checked: false, condition: "",equality:"=" };
             }
             setProperty({ obj })
-            // console.log("new obj")
-            // console.log({ obj })
 
         }
         initializeData().catch(console.error)
@@ -102,8 +100,6 @@ export const Select = () => {
             for (let i = 0; i < col.length; i++) {
                 obj[col[i].column_name] = { checked: false, condition: "",equality:"=" };
             }
-            // console.log("new obj")
-            // console.log({obj})
             setProperty({ obj })
             setTuples([])
 
@@ -129,7 +125,10 @@ export const Select = () => {
                         <p>Selected:{table}</p>
                 
                         <form onSubmit={getResult}>
+                            {console.log(property["obj"])}
                             {
+                             
+                                
                                 Object.keys(property["obj"]).map(attribute => <div>{attribute}
                                   <select name="equality" onChange={(e)=>handleEquality(e.target.value,attribute)} value={property["obj"][attribute]["equality"]} disabled={!property["obj"][attribute]["checked"]} >
                                         <option value="="> {"="} </option>
@@ -141,6 +140,8 @@ export const Select = () => {
                                     <input type="textbox" disabled={!property["obj"][attribute]["checked"]}
                                         onChange={(e) => handleOnTextbox(e.target.value, attribute)}
                                         value={property["obj"][attribute]["condition"]} />
+                                        {console.log("attribute")}
+                                        {console.log(attribute)}
                                     <input type="checkbox" value={attribute} onChange={(e) => handleOnCheckbox(e, attribute)}
                                         checked={property["obj"][attribute]["checked"]} />
                                 </div>)
