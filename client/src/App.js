@@ -6,8 +6,6 @@ import {NormalUser} from "./component/NormalUser"
 import {RiotEmployee} from "./component/RiotEmployee"
 import {ChooseTable} from "./component/ChooseTable"
 import {Update} from "./component/Update"
-import {Select} from "./component/Select"
-import {Delete} from "./component/Delete"
 import {Insert} from "./component/Insert"
 import {Error} from "./component/Error"
 
@@ -18,7 +16,6 @@ function App() {
         <Routes>
           <Route path = "/" element = {<Home/>}/>
           <Route path = "/riotemployee" element = {<RiotEmployee/>}/>
-          <Route path = "/riotemployee/select" element = {<Delete/>}/> // todo
           <Route path = "/riotemployee/choosetable" element = {<ChooseTable/>}/>
           <Route path = "/riotemployee/choosetable/insert" element = {<Insert/>}/>
           <Route path = "/riotemployee/choosetable/update" element = {<Update/>}/>
