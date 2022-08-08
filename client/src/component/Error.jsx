@@ -1,8 +1,6 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 
-// if I want to check for FDs, then I probably have to pass in a function to Insert, that returns true or false dependong on if the FDs are satisfied
-
 export const Error = () => {
 
     const navigate = useNavigate();
