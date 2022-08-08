@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 export const AggWithHaving = () => {
 
     const navigate = useNavigate();
-//    const location = useLocation();
+    const location = useLocation();
     const [AllData, setAllData] = useState(null);
 //    const [refreshAfterDelete, setRefreshAfterDelete] = useState(0);
 
@@ -45,7 +45,7 @@ export const AggWithHaving = () => {
     </tr>
 
     {AllData && AllData.map((entry) => {
-        return <tr key={entry.id}>
+        return <tr key={entry.team_name}>
         <td>{entry.team_name}</td> 
         <td>{entry.min}</td>
       </tr>

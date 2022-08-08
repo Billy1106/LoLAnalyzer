@@ -7,6 +7,8 @@ import {RiotEmployee} from "./component/RiotEmployee"
 import {ChooseTable} from "./component/ChooseTable"
 import {Update} from "./component/Update"
 import {Delete} from "./component/Delete"
+import {AggWithHaving} from "./component/AggWithHaving"
+import {NestedAggWithGB} from "./component/NestedAggWithGB"
 
 
 
@@ -21,6 +23,11 @@ function App() {
           <Route path = "/riotemployee/choosetable/update" element = {<Update/>}/>
           <Route path = "/riotemployee/choosetable/delete" element = {<Delete/>}/>
           <Route path = "/normaluser" element = {<NormalUser/>}/>
+          <Route path = "/riotemployee/aggwithhaving" element = {<AggWithHaving/>}/>
+          <Route path = "/normaluser/aggwithhaving" element = {<AggWithHaving/>}/>
+          <Route path = "/riotemployee/NestedAggWithGB" element = {<NestedAggWithGB/>}/>
+          <Route path = "/normaluser/NestedAggWithGB" element = {<NestedAggWithGB/>}/>
+
         </Routes>
       </BrowserRouter>
 

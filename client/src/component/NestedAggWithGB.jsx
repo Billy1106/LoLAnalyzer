@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 export const NestedAggWithGB = () => {
 
     const navigate = useNavigate();
-//    const location = useLocation();
+    const location = useLocation();
     const [AllData, setAllData] = useState(null);
 //    const [refreshAfterDelete, setRefreshAfterDelete] = useState(0);
 
