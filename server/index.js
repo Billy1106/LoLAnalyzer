@@ -35,26 +35,6 @@ app.get("/game/get/:table/:data/:condition", async(req,res)=>{
         res.status(500).send(error.message)
     }
 })
-//group by table
-app.get("/game/groupby/:table/:data/:condition/:groupby", async(req,res)=>{
-    try {
-        const table = req.params.table;
-        const data = req.params.data;
-        const condition = req.params.condition;
-        const group = req.params.groupby;
-        //    http://localhost:5321/game/groupby/pro_players_belong/server/true/server
-        // is same as 
-        //    select server,id from pro_players_belong group by server,id
-
-        console.log(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group}`)
-        const allGames = await pool.query(`SELECT ${data} FROM ${table} WHERE ${condition} GROUP BY ${group}`);
-        res.json(allGames.rows);
-    } catch (error) {
-        console.log("error")
-        console.log(error.message);
-        res.status(500).send(error.message)
-    }
-})
 
 //group by table
 app.get("/game/groupby/:table/:data/:condition/:groupby", async(req,res)=>{
