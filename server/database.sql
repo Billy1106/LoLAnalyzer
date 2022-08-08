@@ -39,7 +39,7 @@ CREATE TABLE Esport_Teams(
 DROP TABLE Champion1;
 CREATE TABLE Champion1(
     RP_cost INTEGER, 
-    BE_cost  INTEGER,
+    BE_cost  INTEGER CHECK(7800 - ((975 - RP_cost) / 10) * 20 = BE_cost),
     PRIMARY KEY (RP_cost),
     UNIQUE (BE_cost)
 );
@@ -47,14 +47,14 @@ CREATE TABLE Champion1(
 DROP TABLE Champion3;
 CREATE TABLE Champion3(
     years_since_release INTEGER, 
-    RP_cost INTEGER,
+    RP_cost INTEGER CHECK(RP_cost = 975 - (years_since_release * 10)),
     PRIMARY KEY (years_since_release)
 );
 
 DROP TABLE Champion5;
 CREATE TABLE Champion5(
     years_since_release INTEGER, 
-    num_skins INTEGER,
+    num_skins INTEGER CHECK(years_since_release = num_skins),
     PRIMARY KEY (years_since_release)
 );
 
@@ -110,7 +110,7 @@ CREATE TABLE Players1(
 DROP TABLE Players3 CASCADE;
 CREATE TABLE Players3(
     level INTEGER,
-    total_played_hours INTEGER,
+    total_played_hours INTEGER CHECK(total_played_hours = level * 10),
     PRIMARY KEY (level),
     UNIQUE(total_played_hours)
 );
@@ -276,31 +276,31 @@ INSERT INTO Items(name, function, cost) VALUES ('Moonstone Renewer', '+40 abilit
 
 
 INSERT INTO Champion1(RP_cost, BE_cost) VALUES('865','7580');
-INSERT INTO Champion1(RP_cost, BE_cost) VALUES('875', '7601');
-INSERT INTO Champion1(RP_cost, BE_cost) VALUES('895', '7642');
-INSERT INTO Champion1(RP_cost, BE_cost) VALUES('885', '7623');
-INSERT INTO Champion1(RP_cost, BE_cost) VALUES('805', '7604');
+INSERT INTO Champion1(RP_cost, BE_cost) VALUES('875', '7600');
+INSERT INTO Champion1(RP_cost, BE_cost) VALUES('895', '7640');
+INSERT INTO Champion1(RP_cost, BE_cost) VALUES('885', '7620');
+INSERT INTO Champion1(RP_cost, BE_cost) VALUES('855', '7560');
 
 
 INSERT INTO Champion3(years_since_release, RP_cost) VALUES('11', '865');
 INSERT INTO Champion3(years_since_release, RP_cost) VALUES('10', '875');
 INSERT INTO Champion3(years_since_release, RP_cost) VALUES('8', '895');
 INSERT INTO Champion3(years_since_release, RP_cost) VALUES('9', '885');
-INSERT INTO Champion3(years_since_release, RP_cost) VALUES('7', '845');
+INSERT INTO Champion3(years_since_release, RP_cost) VALUES('12', '855');
 
 
 INSERT INTO Champion5(years_since_release, num_skins) VALUES('11', '11');
 INSERT INTO Champion5(years_since_release, num_skins) VALUES('10', '10');
 INSERT INTO Champion5(years_since_release, num_skins) VALUES('8', '8');
 INSERT INTO Champion5(years_since_release, num_skins) VALUES('9', '9');
-INSERT INTO Champion5(years_since_release, num_skins) VALUES('7', '7');
+INSERT INTO Champion5(years_since_release, num_skins) VALUES('12', '12');
 
 
 INSERT INTO Champion6(name, years_since_release) VALUES('Ahri', '11');
 INSERT INTO Champion6(name, years_since_release) VALUES('Hecarim', '10');
 INSERT INTO Champion6(name, years_since_release) VALUES('Vel koz', '8');
 INSERT INTO Champion6(name, years_since_release) VALUES('Aatrox', '9');
-INSERT INTO Champion6(name, years_since_release) VALUES('Lulu', '10');
+INSERT INTO Champion6(name, years_since_release) VALUES('Lulu', '12');
 
 
 INSERT INTO A_Single_Match(match_id, game_modes) VALUES('1', 'Ranked');
@@ -350,26 +350,24 @@ INSERT INTO Players1(rank, banner) VALUES('Diamond', 'Diamond Banner');
 
 INSERT INTO Players3(level, total_played_hours) VALUES('257', '2570');
 INSERT INTO Players3(level, total_played_hours) VALUES('1', '10');
-INSERT INTO Players3(level, total_played_hours) VALUES('300', '300');
-INSERT INTO Players3(level, total_played_hours) VALUES('520', '5100');
-INSERT INTO Players3(level, total_played_hours) VALUES('110', '1200');
-INSERT INTO Players3(level, total_played_hours) VALUES('1000', '130000');
-INSERT INTO Players3(level, total_played_hours) VALUES('5400', '54000');
-INSERT INTO Players3(level, total_played_hours) VALUES('5500', '55000');
+INSERT INTO Players3(level, total_played_hours) VALUES('300', '3000');
+INSERT INTO Players3(level, total_played_hours) VALUES('200', '2000');
+INSERT INTO Players3(level, total_played_hours) VALUES('100', '1000');
+INSERT INTO Players3(level, total_played_hours) VALUES('10000', '100000');
+INSERT INTO Players3(level, total_played_hours) VALUES('5000', '50000');
+INSERT INTO Players3(level, total_played_hours) VALUES('2000', '20000');
 
 
 INSERT INTO Players4(ID, server, rank, level) VALUES('Baba Beeswax', 'NA', 'Gold', '257');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('Billy', 'JPN', 'Bronze', '1');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('Jeanette', 'CN', 'Gold', '300');
-INSERT INTO Players4(ID, server, rank, level) VALUES ('Kohei', 'JPN', 'Silver', '500');
+INSERT INTO Players4(ID, server, rank, level) VALUES ('Kohei', 'JPN', 'Silver', '200');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('Yuh', 'NA', 'Silver', '100');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('Hide on Bush', 'KR', 'Challenger', '10000');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('ppgod', 'CN', 'Challenger', '5000');
-INSERT INTO Players4(ID, server, rank, level) VALUES ('llman', 'NA', 'Diamond', '5000');
 INSERT INTO Players4(ID, server, rank, level) VALUES('Xiaohu', 'CN', 'Challenger', '30000');
 INSERT INTO Players4(ID, server, rank, level) VALUES('Ming', 'CN', 'Challenger', '25000');
-
-
+INSERT INTO Players4(ID, server, rank, level) VALUES ('llman', 'NA', 'Diamond', '2000');
 
 
 INSERT INTO Streamers(ID, server, Stream_schedule) VALUES ('Billy', 'JPN','Every Friday 7:00 pm to 10:00 pm');
@@ -445,5 +443,3 @@ INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Louis Vuitton', 'V
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Secretlab', 'Evil Geniuses');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('OPPO', 'Cloud9');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Red Bull', 'DetonatioN FocusMe');
-
-

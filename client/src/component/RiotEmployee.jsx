@@ -12,11 +12,14 @@ export const RiotEmployee = () => {
             <button onClick={() => navigate("/riotemployee/choosetable",{state:{action: "(to delete)."}})}>Delete</button>
             <button onClick={() => navigate("/")}>Insert</button>
             <button onClick={() => navigate("/riotemployee/select")}>Select(View)+Projction</button>
-            <button onClick={() => navigate("/")}>Division</button>
+           
             <button onClick={() => navigate("/riotemployee/join")}>Join</button>
-            <button onClick={() => navigate("/")}>Aggregation with Group By</button>
+            
             <button onClick={() => navigate("/riotemployee/aggwithhaving",{state:{action: "Aggregation with having"}})}>Aggregation with having</button>
             <button onClick={() => navigate("/riotemployee/nestedaggwithgb",{state:{action: "Nested aggreagtion with group by"}})}>Nested Aggregation with Group By</button>
+            <button onClick = {() => navigate("/riotemployee/choosetable")}>Update</button>
+            <button onClick = {() => navigate("/riotemployee/division")}>division</button>
+            <button onClick = {() => navigate("/riotemployee/aggregationgroupby")}>Aggregation Group By</button>
             <button onClick={() => navigate("/")}>back</button>
         </div>
     );

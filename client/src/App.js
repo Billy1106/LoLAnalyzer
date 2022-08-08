@@ -11,8 +11,10 @@ import {AggWithHaving} from "./component/AggWithHaving"
 import {NestedAggWithGB} from "./component/NestedAggWithGB"
 import {Select} from "./component/Select"
 import {Join} from "./component/Join"
-
-
+import {Insert} from "./component/Insert"
+import {Error} from "./component/Error"
+import { Division } from './component/Division';
+import { AggregationGroupBy } from './component/AggregationGroupBy';
 
 function App() {
   return (
@@ -20,8 +22,11 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = "/" element = {<Home/>}/>
+          <Route path = "/riotemployee/division" element = {<Division/>}/>
+          <Route path = "/riotemployee/aggregationgroupby" element = {<AggregationGroupBy/>}/>
           <Route path = "/riotemployee" element = {<RiotEmployee/>}/>
           <Route path = "/riotemployee/choosetable" element = {<ChooseTable/>}/>
+          <Route path = "/riotemployee/choosetable/insert" element = {<Insert/>}/>
           <Route path = "/riotemployee/choosetable/update" element = {<Update/>}/>
           <Route path = "/riotemployee/choosetable/delete" element = {<Delete/>}/>
           <Route path = "/normaluser" element = {<NormalUser/>}/>
@@ -34,6 +39,7 @@ function App() {
           <Route path = "/normaluser/join" element = {<Join/>}/>
           <Route path = "/riotemployee/join" element = {<Join/>}/>
 
+          <Route path = "/error" element = {<Error/>}/>
         </Routes>
       </BrowserRouter>
 
