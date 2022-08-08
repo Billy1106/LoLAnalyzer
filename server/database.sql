@@ -136,7 +136,7 @@ CREATE TABLE Streamers(
         ON UPDATE CASCADE
 );
 
-DROP TABLE Pro_Players_belong;
+DROP TABLE Pro_Players_belong CASCADE;
 CREATE TABLE Pro_Players_belong(
     ID CHAR(50),
     Server CHAR(50),

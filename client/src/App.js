@@ -31,8 +31,17 @@ function App() {
         </Routes>
       </BrowserRouter>
 
+{/* =======
+import { Select } from '../src/component/Select';
+import { Delete } from './component/Delete';
+import { Join } from './component/Join';
+
+function App() {
+  return (
+    <div>
+      <Delete />
+>>>>>>> develop */}
     </div>
   );
 }
-
 export default App;
