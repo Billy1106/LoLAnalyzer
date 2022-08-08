@@ -355,6 +355,8 @@ INSERT INTO Players3(level, total_played_hours) VALUES('200', '2000');
 INSERT INTO Players3(level, total_played_hours) VALUES('100', '1000');
 INSERT INTO Players3(level, total_played_hours) VALUES('10000', '100000');
 INSERT INTO Players3(level, total_played_hours) VALUES('5000', '50000');
+INSERT INTO Players3(level, total_played_hours) VALUES('30000', '300000');
+INSERT INTO Players3(level, total_played_hours) VALUES('25000', '250000');
 INSERT INTO Players3(level, total_played_hours) VALUES('2000', '20000');
 
 
@@ -382,8 +384,8 @@ INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Baba Beeswax', 'NA', 'Evil Geniuses', 'Mid',  '07/25/5022');
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('llman', 'NA', 'Cloud9', 'Mid',  '01/13/5022');
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Billy', 'JPN', 'DetonatioN FocusMe', 'ADC',  '06/27/5022');
-INSERT INTO Pro_Players-belong(ID, server, team_name, position, last_stated_date) VALUES ('Xiaohu', 'CN', 'Royal Never Give Up', 'Mid', '01/05/2015');
-INSERT INTO Pro_Players-belong(ID, server, team_name, position, last_stated_date) VALUES ('Ming', 'CN', 'Royal Never Give Up', 'Support', '12/12/2016');
+INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Xiaohu', 'CN', 'Royal Never Give Up', 'Mid', '01/05/2015');
+INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Ming', 'CN', 'Royal Never Give Up', 'Support', '12/12/2016');
 
 
 
@@ -439,6 +441,16 @@ INSERT INTO Streamer_Sponsors(company_name, ID, server) VALUES ('Secretlab', 'Yu
 
 
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Mastercard', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Secretlab', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Amazon', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('OPPO', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Red Bull', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Louis Vuitton', 'T1');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Mastercard', 'Victory Five');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Secretlab', 'Victory Five');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Amazon', 'Victory Five');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('OPPO', 'Victory Five');
+INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Red Bull', 'Victory Five');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Louis Vuitton', 'Victory Five');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('Secretlab', 'Evil Geniuses');
 INSERT INTO Esport_Sponsors(company_name, team_name) VALUES ('OPPO', 'Cloud9');
