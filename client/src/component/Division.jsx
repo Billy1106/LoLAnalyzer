@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export const Division = () => {
 
-    const [teams, setTeams] = useState([{ team_name: "blank", world_rank: 0 }]) // state auto updates!!!!!
+    const [teams, setTeams] = useState([{ team_name: "blank", world_rank: 0 }])
 
     const navigate = useNavigate();
 
@@ -12,9 +12,6 @@ export const Division = () => {
             const response = await fetch("http://localhost:5321/game/get/Esport_Teams et/DISTINCT et.Team_name, et.World_rank/" +
                 "NOT EXISTS ((SELECT Company_name FROM Sponsors) EXCEPT" +
                 "(SELECT company_name FROM Esport_Sponsors es WHERE et.Team_name = es.team_name))", { method: "GET" });
-            //const response = await fetch("http://localhost:5321/game/get/Esport_Teams/*/True",{method:"GET"});
-            //const response = await fetch("http://localhost:5321/game/get/Esport_Sponsors/*/True",{method:"GET"});
-            //const response = await fetch("http://localhost:5321/game/insert/Esport_Sponsors/'Louis Vuitton','T1'",{method:"PUT"});
             const jsonData = await response.json();
             return jsonData;
         }
