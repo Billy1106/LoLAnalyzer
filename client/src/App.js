@@ -8,6 +8,8 @@ import {ChooseTable} from "./component/ChooseTable"
 import {Update} from "./component/Update"
 import {Insert} from "./component/Insert"
 import {Error} from "./component/Error"
+import { Division } from './component/Division';
+import { AggregationGroupBy } from './component/AggregationGroupBy';
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path = "/" element = {<Home/>}/>
+          <Route path = "/riotemployee/division" element = {<Division/>}/>
+          <Route path = "/riotemployee/aggregationgroupby" element = {<AggregationGroupBy/>}/>
           <Route path = "/riotemployee" element = {<RiotEmployee/>}/>
           <Route path = "/riotemployee/choosetable" element = {<ChooseTable/>}/>
           <Route path = "/riotemployee/choosetable/insert" element = {<Insert/>}/>
