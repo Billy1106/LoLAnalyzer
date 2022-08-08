@@ -366,6 +366,10 @@ INSERT INTO Players4(ID, server, rank, level) VALUES ('Yuh', 'NA', 'Silver', '10
 INSERT INTO Players4(ID, server, rank, level) VALUES ('Hide on Bush', 'KR', 'Challenger', '10000');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('ppgod', 'CN', 'Challenger', '5000');
 INSERT INTO Players4(ID, server, rank, level) VALUES ('llman', 'NA', 'Diamond', '5000');
+INSERT INTO Players4(ID, server, rank, level) VALUES('Xiaohu', 'CN', 'Challenger', '30000');
+INSERT INTO Players4(ID, server, rank, level) VALUES('Ming', 'CN', 'Challenger', '25000');
+
+
 
 
 INSERT INTO Streamers(ID, server, Stream_schedule) VALUES ('Billy', 'JPN','Every Friday 7:00 pm to 10:00 pm');
@@ -380,6 +384,9 @@ INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Baba Beeswax', 'NA', 'Evil Geniuses', 'Mid',  '07/25/5022');
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('llman', 'NA', 'Cloud9', 'Mid',  '01/13/5022');
 INSERT INTO Pro_Players_belong(ID, server, team_name, position, last_stated_date) VALUES ('Billy', 'JPN', 'DetonatioN FocusMe', 'ADC',  '06/27/5022');
+INSERT INTO Pro_Players-belong(ID, server, team_name, position, last_stated_date) VALUES ('Xiaohu', 'CN', 'Royal Never Give Up', 'Mid', '01/05/2015');
+INSERT INTO Pro_Players-belong(ID, server, team_name, position, last_stated_date) VALUES ('Ming', 'CN', 'Royal Never Give Up', 'Support', '12/12/2016');
+
 
 
 INSERT INTO Sponsors(Company_name) VALUES ('Mastercard');
