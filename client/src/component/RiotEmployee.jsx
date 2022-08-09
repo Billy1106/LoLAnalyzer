@@ -25,7 +25,7 @@ export const RiotEmployee = () => {
            
             <button onClick={() => navigate("/riotemployee/join")} style={{fontSize:"30px"}}>Combine</button>
             
-            <button onClick={() => navigate("/riotemployee/aggwithhaving",{state:{action: "Aggregation with having"}})} style={{fontSize:"30px"}}>Show the lowest-level pro-players for each team....</button>
+            <button onClick={() => navigate("/riotemployee/aggwithhaving",{state:{action: "Aggregation with having"}})} style={{fontSize:"30px"}}>Show the lowest-level of pro-players for each team....</button>
             <button onClick={() => navigate("/riotemployee/nestedaggwithgb",{state:{action: "Nested aggreagtion with group by"}})} style={{fontSize:"30px"}}>Show the level of the lowest-level pro-players with....</button>
             
             <button onClick = {() => navigate("/riotemployee/division")} style={{fontSize:"30px"}}>All the esports teams that were sponsored by every company</button>
