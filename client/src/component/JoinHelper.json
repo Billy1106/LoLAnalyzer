@@ -16,13 +16,13 @@
         "esport_sponsors":"team_name"
     },
     "champion6":{
-        "abilities_has":"name",
+        "abilities_has":"champion_name",
         "buy":"name",
         "match_in":"name",
         "kills":"name"
     },
     "abilities_has":{
-        "champion6":"champion_name"
+        "champion6":"name"
     },
     "jungle_monsters":{
         "ai_controlled_entities":"name"
