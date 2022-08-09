@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import "../assets/styles/select.scss"
+import { useNavigate, useLocation } from "react-router-dom";
 const joinHelper = require("./JoinHelper.json")
 export const Join = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const [tables, setTables] = useState([]);//list of tables
     const [keys, setKeys] = useState({})//selected tables
@@ -23,7 +26,6 @@ export const Join = () => {
     const getResult = async (e) => {//get join data
         setFetching(true)
         e.preventDefault();
-
         try {
             var select = ""
             var where = "";
@@ -46,7 +48,6 @@ export const Join = () => {
             const firstKey = keys[secondTable][0][firstTable];
             const from = firstTable + " join " + secondTable + " on " + firstTable + "." + firstKey + " = " + secondTable + "." + secondKey;
             select = select.slice(0, -1);
-            console.log(where)
             where += "true"
             console.log(`http://localhost:5321/game/get/${from}/${select}/${where}`)
             const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`)
@@ -181,6 +182,7 @@ export const Join = () => {
                     )}
                 </tr>
             </table>
+            <button onClick={() => navigate(-1)}>back</button>
             <form onSubmit={getResult} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {
                     (Object.keys(keys).length === 0) ? <p>Please select tables</p> :

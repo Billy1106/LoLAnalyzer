@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import "../assets/styles/select.scss"
+import { useNavigate, useLocation } from "react-router-dom";
 
 export const Select = () => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    
 
     const [tables, setTables] = useState([]);//list of tables
     const [table, setTable] = useState([]);//selected tables
@@ -119,6 +123,7 @@ export const Select = () => {
                     </tr>
                 )}
             </table>
+            <button onClick={() => navigate(-1)}>back</button>
             <table style={{display: 'flex',alignItems: 'center',justifyContent: 'center'}}>
                 {(property["obj"] === undefined) ? <p>loading</p> :
                     <div>
@@ -128,7 +133,6 @@ export const Select = () => {
                             {console.log(property["obj"])}
                             {
                              
-                                
                                 Object.keys(property["obj"]).map(attribute => <div>{attribute}
                                   <select name="equality" onChange={(e)=>handleEquality(e.target.value,attribute)} value={property["obj"][attribute]["equality"]} disabled={!property["obj"][attribute]["checked"]} >
                                         <option value="="> {"="} </option>
