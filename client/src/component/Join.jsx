@@ -174,15 +174,15 @@ export const Join = () => {
     return (
         <div style={{ textAlign: "center", fontSize: "20px" }} className='select'>
             <h1>Select A Table From Below</h1>
-            <table style={{ marginLeft: "20%", marginRight: "20%" }}>
+            <table style={{marginLeft:"20%",marginRight:"20%",fontSize:"50px"}}>
                 <tr>
                     {(tables.length === 0) ? <p>loading</p> : Object.keys(tables).map(e => {
-                        return <button onClick={() => pickTables(e)} disabled={fetching || !tables[e]["isKey"]} style={tables[e]["picked"] ? { backgroundColor: "green" } : {}}>{JSON.stringify(e).replace(/\"/g, "")}</button>
+                        return <button style={{fontSize:"50px"}}  onClick={() => pickTables(e)} disabled={fetching || !tables[e]["isKey"]} style={tables[e]["picked"] ? { backgroundColor: "green" } : {}}>{JSON.stringify(e).replace(/\"/g, "")}</button>
                     }
                     )}
                 </tr>
             </table>
-            <button onClick={() => navigate(-1)}>back</button>
+            <button style={{fontSize:"25px"}}  onClick={() => navigate(-1)}>back</button>
             <form onSubmit={getResult} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                 {
                     (Object.keys(keys).length === 0) ? <p>Please select tables</p> :
@@ -218,7 +218,7 @@ export const Join = () => {
                 }
 
                 <div style={{ display: "flex" }}>
-                    <button type='submit' disabled={keys[Object.keys(keys)[0]] === undefined || keys[Object.keys(keys)[1]] === undefined}
+                    <button style={{fontSize:"25px"}}  type='submit' disabled={keys[Object.keys(keys)[0]] === undefined || keys[Object.keys(keys)[1]] === undefined}
                     >Join with</button>
                     <p >{(keys[Object.keys(keys)[0]] === undefined || keys[Object.keys(keys)[1]] === undefined) ? <p></p> :
                         Object.keys(keys[Object.keys(keys)[0]][0]).map(first => {

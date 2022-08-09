@@ -8,8 +8,8 @@ export const Home = () => {
     return (
         <div className="home">
             <h1>Welcome to the LOL Database Program</h1>
-            <button onClick={() => navigate("/riotemployee")}>Riot Employee</button>
-            <button onClick={()=> navigate("/normaluser")}>Normal User</button>
+            <button onClick={() => navigate("/riotemployee") }style={{fontSize:"50px"}}>Riot Employee</button>
+            <button onClick={()=> navigate("/normaluser")} style={{fontSize:"50px"}}>Normal User</button>
         </div>
     );
 };

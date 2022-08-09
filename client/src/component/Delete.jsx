@@ -39,7 +39,7 @@ return(
     <button onClick={() => navigate(-1)}>back</button>
     
 
-    {location.state.table == 'champion' && <table>
+    {location.state.table == 'champion' && <table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
   <tr>
     <th>Name</th>
     <th>Years since release</th>
@@ -68,7 +68,7 @@ return(
         })}
 </table>}
 
-{location.state.table == 'items' && <table>
+{location.state.table == 'items' && <table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
   <tr>
     <th>Name</th>
     <th>Function</th>
@@ -94,7 +94,7 @@ return(
 </table>}
 
 
-{location.state.table == 'abilities_has' && <table>
+{location.state.table == 'abilities_has' && <table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
   <tr>
     <th>Ability Name</th>
     <th>Champion Name</th>

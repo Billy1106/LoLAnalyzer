@@ -38,7 +38,7 @@ export const AggWithHaving = () => {
         <div className="aggwithhaving">
         <h1>Show the level of the lowest-level-pro-players who's level is at least 1000 for each e-sport teams with each team has at least 2 such pro-players.</h1>
         <button onClick={() => navigate(-1)}>back</button>
-<table>
+<table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
     <tr>
     <th>Team Name</th>
     <th>Players Lowest Level</th>

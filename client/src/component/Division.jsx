@@ -21,7 +21,7 @@ export const Division = () => {
     return (
         <div className="division">
             <h1>Here are all the esports teams that were sponsored by every company.</h1>
-            <table>
+            <table style={{fontSize:"30px", marginLeft:"auto", marginRight:"auto"}}>
                 <tr>
                     <td>team name</td>
                     <td>world rank</td>
@@ -33,7 +33,7 @@ export const Division = () => {
                         </tr>
                     })}
             </table>
-            <button onClick={() => navigate(-1)}>Back</button>
+            <button onClick={() => navigate(-1)} style={{fontSize:"30px"}}>Back</button>
         </div>
     );
 };

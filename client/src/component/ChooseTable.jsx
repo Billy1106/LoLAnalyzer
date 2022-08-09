@@ -25,10 +25,10 @@ export const ChooseTable = () => {
         return (
             <div className="choosetable">
                 <h1>Please choose an option{location.state.action}</h1>
-                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "champion"}})}>Champions</button>
-                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "items"}})}>Items</button>
-                <button onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "abilities_has"}})}>Abilities</button>
-                <button onClick={() => navigate(-1)}>back</button>
+                <button style={{fontSize:"25px"}} onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "champion"}})}>Champions</button>
+                <button style={{fontSize:"25px"}} onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "items"}})}>Items</button>
+                <button style={{fontSize:"25px"}} onClick = {() => navigate("/riotemployee/choosetable/delete", {state:{table: "abilities_has"}})}>Abilities</button>
+                <button style={{fontSize:"25px"}} onClick={() => navigate(-1)}>back</button>
             </div>
         );
 
@@ -64,10 +64,10 @@ export const ChooseTable = () => {
     return (
         <div className="choosetable">
             <h1>Please choose an option.</h1>
-            <button onClick = {() => getAttributes("rp_cost","Champion1")}>Champions</button>
-            <button onClick = {() => getAttributes("name","Items")}>Items</button>
-            <button onClick = {() => getAttributes("ability_name","Abilities_has")}>Abilities</button>
-            <button onClick={() => navigate(-1)}>back</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("rp_cost","Champion1")}>Champions</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("name","Items")}>Items</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("ability_name","Abilities_has")}>Abilities</button>
+            <button style={{fontSize:"25px"}}  onClick={() => navigate(-1)}>back</button>
         </div>
     );
 };

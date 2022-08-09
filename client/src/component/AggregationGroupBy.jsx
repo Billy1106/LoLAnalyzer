@@ -20,7 +20,7 @@ export const AggregationGroupBy = () => {
     return (
         <div className="division">
             <h1>Here is the average level of the players in each server.</h1>
-            <table>
+            <table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
                 <tr>
                     <td>server</td>
                     <td>level</td>
