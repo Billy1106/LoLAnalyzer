@@ -5,6 +5,16 @@ export const RiotEmployee = () => {
 
     const navigate = useNavigate();
 
+    const resetServer = async(e) => {
+        e.preventDefault();
+        try {
+            const response = await fetch("http://localhost:5321/game", {method: "POST"});
+            const jsonData = await response.json();
+        } catch(err) {
+            console.error(err.message);
+        }
+    }
+
     return (
         <div className="riotemployee">
             <h1>Welcome, Riot employee.</h1>
@@ -20,6 +30,7 @@ export const RiotEmployee = () => {
             
             <button onClick = {() => navigate("/riotemployee/division")}>division</button>
             <button onClick = {() => navigate("/riotemployee/aggregationgroupby")}>Aggregation Group By</button>
+            <button onClick = {resetServer}>Reset Server</button>
             <button onClick={() => navigate("/")}>back</button>
         </div>
     );
