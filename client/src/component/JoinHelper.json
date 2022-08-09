@@ -31,16 +31,16 @@
         "ai_controlled_entities":"name"
     },
     "players4":{
-        "streamers":"server",
-        "pro_players_belong":"server",
-        "play":"server"
+        "streamers":"id,server",
+        "pro_players_belong":"id,server",
+        "play":"id,server"
     },
     "streamers":{
-        "players4":"server",
+        "players4":"id,server",
         "streamer_sponsors":"server"
     },
     "pro_players_belong":{
-        "players4":"server",
+        "players4":"id,server",
         "esport_teams":"team_name"
     },
     "sponsors":{
@@ -61,7 +61,7 @@
     },
     "play":{
         "a_single_match":"match_id",
-        "players4":"server"
+        "players4":"id,server"
     },
     "streamer_sponsors":{
         "sponsors":"company_name",

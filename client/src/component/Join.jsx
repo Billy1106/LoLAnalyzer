@@ -44,9 +44,19 @@ export const Join = () => {
             
             const firstTable = Object.keys(keys)[0];
             const secondTable = Object.keys(keys)[1];
-            const secondKey = keys[firstTable][0][secondTable];
-            const firstKey = keys[secondTable][0][firstTable];
-            const from = firstTable + " join " + secondTable + " on " + firstTable + "." + firstKey + " = " + secondTable + "." + secondKey;
+            var secondKey = keys[firstTable][0][secondTable];
+            var firstKey = keys[secondTable][0][firstTable];
+            var additionalKey = "";
+            var thirdKey = "";
+            var forthKey = "";
+            if(secondKey.includes(",")){
+                thirdKey = secondKey.replace("id,","");
+                forthKey = firstKey.replace("id,","");
+                secondKey = secondKey.replace(",server","")
+                firstKey = firstKey.replace(",server","")
+                additionalKey = " AND " + firstTable + "." + forthKey + " = " + secondTable + "." + thirdKey;
+            }
+            const from = firstTable + " join " + secondTable + " on " + firstTable + "." + firstKey + " = " + secondTable + "." + secondKey + additionalKey;
             select = select.slice(0, -1);
             where += "true"
             console.log(`http://localhost:5321/game/get/${from}/${select}/${where}`)
