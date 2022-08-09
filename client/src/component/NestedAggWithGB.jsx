@@ -36,7 +36,7 @@ export const NestedAggWithGB = () => {
 
         <>
         <div className="nestedaggwithgb">
-        <h1>Show the level of the lowest-level pro-players with level > 99 for each team for which the average level of the pro-players which are at least 99 level is higher than the average of all pro-players across all e-sport-teams.</h1>
+        <h1>Show the level of the lowest-level pro-players with level >= 100 for each team for which the average level of the pro-players which are at least 100 level is higher than the average of all pro-players across all e-sport-teams.</h1>
         <button onClick={() => navigate(-1)}>back</button>
 <table>
     <tr>
