@@ -69,7 +69,7 @@ export const Update = () => {
 
     return (
         <div className="riotemployee">
-            <h1>Enter values to update for {location.state.table}</h1>
+            <h1>Enter values to update for {location.state.displayText}</h1>
             <div>
                 {location.state.attributes.map(e => initForms(e, index))}
                 <p>{"new " + location.state.primaryKey}</p>

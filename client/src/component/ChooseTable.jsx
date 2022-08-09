@@ -38,7 +38,7 @@ export const ChooseTable = () => {
     // key is the key attribute. (assume there is only one)
     // tableNames are the tables you want to choose. (this function allows multiple,
     // but just use it with one only.)
-    const getAttributes = async (key,...tableNames) => {
+    const getAttributes = async (key, display,...tableNames) => {
         try {
             const attributeNames = new Set();
 
@@ -55,7 +55,8 @@ export const ChooseTable = () => {
             navigate(`/riotemployee/choosetable/${location.state.action}`, {state:
                 {table: tableNames[0],
                 attributes: uniqueAttributeNames,
-                primaryKey: key}});
+                primaryKey: key,
+                displayText: display}});
         } catch (err) {
             console.log(err.message);
         }
@@ -64,9 +65,9 @@ export const ChooseTable = () => {
     return (
         <div className="choosetable">
             <h1>Please choose an option.</h1>
-            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("rp_cost","Champion1")}>Champions</button>
-            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("name","Items")}>Items</button>
-            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("ability_name","Abilities_has")}>Abilities</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("name","Champion","Champion6")}>Champions</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("name","Items","Items")}>Items</button>
+            <button style={{fontSize:"25px"}}  onClick = {() => getAttributes("ability_name","Abilities","Abilities_has")}>Abilities</button>
             <button style={{fontSize:"25px"}}  onClick={() => navigate(-1)}>back</button>
         </div>
     );

@@ -422,7 +422,6 @@ INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Ahri', 'Che
 INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Ahri', 'Ancient Krug');
 INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Hecarim', 'Ancient Krug');
 INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Hecarim', 'Mini Krug');
--- INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Lulu', 'Mini Krug');violate fk
 INSERT INTO Kills(champion_name, AI_controlled_entity_name) VALUES ('Lulu', 'Ancient Krug');
 
 

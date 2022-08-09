@@ -50,7 +50,7 @@ export const Insert = () => {
 
     return (
         <div className="riotemployee">
-            <h1>Enter values to insert for {location.state.table}</h1>
+            <h1>Enter values to insert for {location.state.displayText}</h1>
             <div>
                 {location.state.attributes.map(e => initForms(e, index))}
             </div>
