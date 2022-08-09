@@ -31,19 +31,22 @@ export const Join = () => {
                 Object.keys(property["obj"][table]).forEach(function (key) {
                     if (property["obj"][table][key]["checked"]) {
                         select = table + "." + key + "," + select
-                        if (property["obj"][table][key]["condition"] != "")
-                            where = key + property["obj"][table][key]["equality"] + property["obj"][table][key]["condition"] + " AND " + where
+                        if (property["obj"][table][key]["condition"] != ""){
+                            console.log(table)
+                            where = table + "." + key + property["obj"][table][key]["equality"] + property["obj"][table][key]["condition"] + " AND " + where
+                        }
                     }
                 })
 
             })
-            console.log(select)
+            
             const firstTable = Object.keys(keys)[0];
             const secondTable = Object.keys(keys)[1];
             const secondKey = keys[firstTable][0][secondTable];
             const firstKey = keys[secondTable][0][firstTable];
             const from = firstTable + " join " + secondTable + " on " + firstTable + "." + firstKey + " = " + secondTable + "." + secondKey;
             select = select.slice(0, -1);
+            console.log(where)
             where += "true"
             console.log(`http://localhost:5321/game/get/${from}/${select}/${where}`)
             const response = await fetch(`http://localhost:5321/game/get/${from}/${select}/${where}`)
@@ -63,9 +66,11 @@ export const Join = () => {
         setProperty({ obj: { ...property["obj"], [entity]: { ...property["obj"][entity], [index]: { ...property["obj"][entity][index], checked: !property["obj"][entity][index]["checked"] } } } })
     }
     const handleOnTextbox = (e, index, entity) => {
+        
         setProperty({ obj: { ...property["obj"], [entity]: { ...property["obj"][entity], [index]: { ...property["obj"][entity][index], condition: e.target.value } } } })
     }
     const handleEquality = (e, index, entity) => {
+
         setProperty({ obj: { ...property["obj"], [entity]: { ...property["obj"][entity], [index]: { ...property["obj"][entity][index], equality: e.target.value } } } })
     }
     const initialTable = async () => {
