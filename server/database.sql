@@ -402,6 +402,7 @@ INSERT INTO Esport_Teams(Team_name, World_rank) VALUES ('Victory Five', '1');
 INSERT INTO Esport_Teams(Team_name, World_rank)VALUES ('Evil Geniuses', '3');
 INSERT INTO Esport_Teams(Team_name, World_rank) VALUES ('Cloud9', '4');
 INSERT INTO Esport_Teams(Team_name, World_rank) VALUES ('DetonatioN FocusMe', '5');
+INSERT INTO Esport_Teams(Team_name, World_rank) VALUES ('Royal Never Give Up', '6');
 
 
 INSERT INTO Buy(Champion_name,  item_name) VALUES ('Ahri', 'Rabadon s Deathcap');

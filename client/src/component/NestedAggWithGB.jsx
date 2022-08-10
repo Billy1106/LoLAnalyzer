@@ -15,8 +15,7 @@ export const NestedAggWithGB = () => {
 
     const effectGet = useEffect(() => {
 
-        let url = `http://localhost:5321/game/groupby/Players4%20P4,%20Pro_players_belong%20PPB/PPB.team_name,%20P4.level,%20MIN(P4.level),%20AVG(P4.level)/P4.level%20%3E%2099%20AND%20PPB.ID%20=%20P4.ID%20AND%20PPB.server%20=%20P4.server/PPB.team_name,%20P4.level/AVG(P4.level)%20%3E%20(SELECT%20AVG%20(level)%20FROM%20Players4)`;
-
+        let url = "http://localhost:5321/game/groupby/Players4 P4, Pro_players_belong PPB/PPB.team_name, MIN(P4.level), AVG(P4.level)/P4.level > 99 AND PPB.ID = P4.ID AND PPB.server = P4.server/PPB.team_name/AVG(P4.level) > (SELECT AVG(level) FROM Players4)";
         fetch(url, {method: "GET"})
         .then(
             (Response) => {
@@ -41,7 +40,6 @@ export const NestedAggWithGB = () => {
 <table style={{marginLeft:"auto",marginRight:"auto",fontSize:"30px"}}>
     <tr>
     <th>Team Name</th>
-    <th>Players Level</th>
     <th>Players Lowest Level</th>
     <th>Average Pro-Player Level</th>
     </tr>
@@ -49,7 +47,6 @@ export const NestedAggWithGB = () => {
     {AllData && AllData.map((entry) => {
         return <tr key={entry.level}>
         <td>{entry.team_name}</td>
-        <td>{entry.level}</td>
         <td>{entry.min}</td>
         <td>{entry.avg}</td>
       </tr>
