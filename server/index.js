@@ -15,6 +15,7 @@ app.post("/game", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+        res.status(500).send(error.message)
     }
 })
 
@@ -152,11 +153,15 @@ app.put("/game/insert/:table/:value", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+<<<<<<< HEAD
         res.json("error: " + error.message)
 
 //         res.json("error: " + error.message)
 //         //res.status(500).send(error.message)
 // >>>>>>> Kyle-Front-End
+=======
+        res.status(500).send(error.message)
+>>>>>>> 28e9e3a92e141d1fcc841e0bb5ad3a725db85fc9
     }
 })
 
@@ -175,12 +180,16 @@ app.put("/game/update/:table/:value/:condition", async(req,res)=>{
     } catch (error) {
         console.log("error")
         console.log(error.message);
+<<<<<<< HEAD
 
         res.json("error: " + error.message)
 
 //         res.json("error: " + error.message)
 //         //res.status(500).send(error.message)
 // >>>>>>> Kyle-Front-End
+=======
+        res.status(500).send(error.message)
+>>>>>>> 28e9e3a92e141d1fcc841e0bb5ad3a725db85fc9
     }
 })
 
